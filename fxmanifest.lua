@@ -1,6 +1,6 @@
 fx_version 'adamant'
 games {'gta5'}
-author 'MSK Scripts'
+author 'cmdscripts'
 version '1.3'
 
 shared_scripts { "config.lua" }
