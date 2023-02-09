@@ -1,4 +1,3 @@
-# msk_jobbell
-msk_jobbell
+Thanks for using my Script. 
 
-thanks for using our scripts, dear MSK-Scripts
+If you have any problems join on https://dsc.gg/cmdscripts !
