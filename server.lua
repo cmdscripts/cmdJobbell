@@ -1,7 +1,7 @@
 RegisterNetEvent("bell:notify")
 AddEventHandler("bell:notify", function(job)
-    local src = source
-    local xPlayer = ESX.GetPlayerFromId(src)
+    local source = source
+    local xPlayer = ESX.GetPlayerFromId(source)
     local isJob = false
 
     for k, playerId in pairs(GetPlayers()) do
