@@ -1,5 +1,3 @@
-ESX = exports['es_extended']:getSharedObject()
-
 CreateThread(function()
     while true do
         local wait = 500
@@ -15,7 +13,8 @@ CreateThread(function()
             end
             if dst <= 1.0 then
                 wait = 0
-                ESX.ShowHelpNotification(Config.ShowHelpNotification)
+                local helpNotificationText = v.helpNotification or Config.DefaultHelpNotification
+                ESX.ShowHelpNotification(helpNotificationText)
                 if IsControlJustPressed(1, Config.Control) then
                     TriggerServerEvent("bell:notify", v.job)
                     Wait(Config.WaitAfterBell)
