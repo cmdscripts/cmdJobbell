@@ -1,5 +1,3 @@
-ESX = exports['es_extended']:getSharedObject()
-
 RegisterNetEvent("bell:notify")
 AddEventHandler("bell:notify", function(job)
     local src = source
@@ -15,8 +13,5 @@ AddEventHandler("bell:notify", function(job)
             isJob = true
         end
     end
-
-    if not isJob then 
-        xPlayer.showNotification('Es sind keine Mitarbeiter verfügbar')
-    end
+    if not isJob then xPlayer.showNotification('Es sind keine Mitarbeiter verfügbar') end
 end)
