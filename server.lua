@@ -1,5 +1,5 @@
-RegisterNetEvent("bell:notify")
-AddEventHandler("bell:notify", function(job)
+RegisterNetEvent("cmdJobbell:notify")
+AddEventHandler("cmdJobbell:notify", function(job)
     local source = source
     local xPlayer = ESX.GetPlayerFromId(source)
     local isJob = false

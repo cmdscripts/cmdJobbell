@@ -1,27 +1,42 @@
 CreateThread(function()
     while true do
-        local wait = 500
-    
+        local sleep = 500
+        local playerPed = PlayerPedId()
         for _,v in pairs(Config.Position) do
-            local pos = v.pos
-            local pPos = GetEntityCoords(PlayerPedId())
-            local dst = Vdist(pPos.x, pPos.y, pPos.z, pos.x, pos.y, pos.z)
+            local position = v.position
+            local playerPosition = GetEntityCoords(playerPed)
+            local distance = #(playerPosition - vector3(position.x, position.y, position.z))
 
-            if dst <= 3.0 then
-                wait = 0
-                DrawMarker(Config.MarkerType, pos.x, pos.y, (pos.z)-1.0,0.0, 0.0, 0.0, 360.0, 0.0, 0.0, 1.0, 1.0, 1.0, 60, 66, 207, 155)
+            if distance <= 3.0 then
+                sleep = 0
+                DrawMarker(21, position.x, position.y, (position.z)-1.0,0.0, 0.0, 0.0, 360.0, 0.0, 0.0, 1.0, 1.0, 1.0, 60, 66, 207, 155)
             end
-            if dst <= 1.0 then
-                wait = 0
+            if distance <= 1.0 then
+                sleep = 0
                 local helpNotificationText = v.helpNotification or Config.DefaultHelpNotification
-                ESX.ShowHelpNotification(helpNotificationText)
+                ShowHelpNotification(helpNotificationText)
                 if IsControlJustPressed(1, Config.Control) then
-                    TriggerServerEvent("bell:notify", v.job)
+                    TriggerServerEvent("cmdJobbell:notify", v.job)
                     Wait(Config.WaitAfterBell)
                 end
             end
         end
 
-        Wait(wait)
+        Wait(sleep)
     end
 end)
+
+exports.ox_target:addBoxZone({
+    coords = vec3(438.74417114258, -987.93365478516, 30.724325180054),
+    size = vec3(2, 2, 2),
+    rotation = 45,
+    debug = drawZones,
+    options = {
+        {
+            name = 'box',
+            event = 'ox_target:debug',
+            icon = 'fa-solid fa-cube',
+            label = 'Debug Box',
+        }
+    }
+})
