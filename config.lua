@@ -1,9 +1,10 @@
 Config = {
     Control = 51, -- E
     WaitAfterBell = 10000, -- 10 seconds
+    Marker = 20,
     Position = {
         {
-            pos = vector3(438.74417114258, -987.93365478516, 30.724325180054),
+            pos = vector3(440.8460, -981.0773, 31.6896),
             job = "police",
             helpNotification = "~INPUT_CONTEXT~ Klingel betätigen",
         },
