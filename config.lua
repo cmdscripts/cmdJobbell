@@ -1,18 +1,14 @@
 Config = {
-    Control = 51, -- E
-    WaitAfterBell = 10000, -- 10 seconds
-    Marker = 20,
     Position = {
         {
-            pos = vector3(440.8460, -981.0773, 31.6896),
+            position = vector3(7.1894, -932.7761, 29.9050),
             job = "police",
-            helpNotification = "~INPUT_CONTEXT~ Klingel betätigen",
+            helpNotification = "Test",
         },
         {
-            pos = vector3(440.29974365234, -984.40850830078, 30.724325180054),
+            position = vector3(440.29974365234, -984.40850830078, 30.724325180054),
             job = "police",
-            helpNotification = "~INPUT_CONTEXT~ Test betätigen",
+            helpNotification = "ABC",
         },
     },
-    DefaultHelpNotification = "~INPUT_CONTEXT~ Klingel betätigen",
 }
