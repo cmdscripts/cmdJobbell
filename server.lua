@@ -8,10 +8,18 @@ AddEventHandler("cmdJobbell:notify", function(job)
         local tPlayer = ESX.GetPlayerFromId(playerId)
 
         if tPlayer.job.name == job then
-            tPlayer.showNotification('Ein Kunde sucht einen Mitarbeiter an der Rezeption')
-            xPlayer.showNotification('Du hast die klingel aktiviert')
-            isJob = true
+            for _, position in ipairs(Config.Position) do
+                if position.job == job then
+                    tPlayer.showNotification(position.helpNotification)
+                    xPlayer.showNotification('Du hast die Klingel aktiviert')
+                    isJob = true
+                    break
+                end
+            end
         end
     end
-    if not isJob then xPlayer.showNotification('Es sind keine Mitarbeiter verfügbar') end
+
+    if not isJob then
+        xPlayer.showNotification('Es sind keine Mitarbeiter verfügbar')
+    end
 end)
