@@ -1,30 +1,28 @@
+local notified = false
 
-CreateThread(function()
-    while true do
-        local sleep = 500
-        local playerPed = PlayerPedId()
-        for _, v in pairs(Config.Position or {}) do
-            if v and v.pos then
-                local position = v.pos
-                local playerPosition = GetEntityCoords(playerPed)
-                local distance = #(playerPosition - vector3(position.x, position.y, position.z))
-
-                if distance <= 3.0 then
-                    sleep = 0
-                    DrawMarker(Config.Marker, position.x, position.y, (position.z) - 1.0, 0.0, 0.0, 0.0, 360.0, 0.0, 0.0, 1.0, 1.0, 1.0, 60, 66, 207, 155)
-                end
-                if distance <= 1.0 then
-                    sleep = 0
-                    local helpNotificationText = v.helpNotification or Config.DefaultHelpNotification
-                    ESX.ShowHelpNotification(helpNotificationText)
-                    if IsControlJustPressed(1, Config.Control) then
-                        TriggerServerEvent("cmdJobbell:notify", v.job)
-                        Wait(Config.WaitAfterBell)
+for _, position in ipairs(Config.Position) do
+    exports.ox_target:addBoxZone({
+        coords = position.position,
+        size = vec3(2, 2, 2),
+        rotation = 45,
+        debug = drawZones,
+        options = {
+            {
+                name = 'box',
+                icon = 'fa-solid fa-cube',
+                label = 'klingeln',
+                onSelect = function(job)
+                    if not notified then
+                        TriggerServerEvent("cmdJobbell:notify", position.job)
+                        notified = true
+                        Citizen.SetTimeout(300000, function()
+                            notified = false
+                        end)
+                    else
+                        ESX.ShowNotification("leck mich am arsch du kannst erst in 5 minuten klingeln")
                     end
                 end
-            end
-        end
-
-        Wait(sleep)
-    end
-end)
+            }
+        }
+    })
+end
